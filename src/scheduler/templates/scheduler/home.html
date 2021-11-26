@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Begin page content -->
+    <main class="container">
+        <div class="row row-cols-1 row-cols-md-1 row-cols-lg-1 mb-3 text-center">
+            <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title"><small class="text-muted fw-light">Schedule Waiting Time</small></h1>
+                            
+                           
+                                <div class=" login-form mb-5">
+                                     {% if wait_time %}
+                                     
+                                            {% for i in wait_time %}
+                                                <div class=" w-100 alert bg-secondary text-center text-white fs-5 fw-bold">
+                                                    Patient Waiting Time: {{i}} minutes
+                                                </div>
+                                            {% endfor %}  
+                                    {% else %}
+                                        <form method="POST">{% csrf_token %}
+
+                                            <h1 class="h3 mb-2 fw-normal" style="color: #000 !important; text-align:center">Patient's Arrival Time</h1>
+                                            
+                                            {% comment %} {% for field in loan_form %}
+                                                {{field}}
+                                            {% endfor %}   {% endcomment %}
+                                        
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6 mb-4">
+                                                    <input type="time" name="arrival_time1"class="form-control form-control-lg"   required="" id="id_arrival_time1">                
+                                                    <small><i>Arrival time of  the 1 <sup>st</sup> Patient</i></small>
+                                                </div>
+                                                <div class="col-md-6 mb-4">
+                                                    <input type="time" name="arrival_time2" class="form-control form-control-lg" required="" id="id_arrival_time2">                
+                                                    <small><i>Arrival time of  the 2 <sup>nd</sup> Patient</i></small>
+                                                </div>
+                                                <div class="col-md-6 mb-4">
+                                                    <input type="time" name="arrival_time3" class="form-control form-control-lg"  required="" id="id_arrival_time3">
+                                                    <small><i>Arrival time of  the 3 <sup>rd</sup> Patient</i></small>
+                                                </div>
+                                                <div class="col-md-6 mb-4">
+                                                    <input type="time" name="arrival_time4" class="form-control form-control-lg" required="" id="id_arrival_time4">
+                                                    <small><i>Arrival time of  the 4 <sup>th</sup> Patient</i></small>
+                                                </div>
+                                            </div> 
+                                            <div class="container">
+                                                <button type="submit" class="w-100 btn btn-outline-primary">Predict Waiting time </button>
+                                            </div>
+                                        </form>
+                                    {% endif %}
+                                    {% comment %} {% for field in registration_form %} 
+                                        {% for error in field.errors %}
+                                            <p style="color: red; font-size: 14px;">{{error}}</p>
+                                        {% endfor %}
+                                    {% endfor %} {% endcomment %}
+
+                                </div>
+                               
+                        </div>
+                    </div>
+            </div>
+        
+        </div>
+    </main>
+
+{% endblock content %}
